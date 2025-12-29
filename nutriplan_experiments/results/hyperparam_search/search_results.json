@@ -1,0 +1,342 @@
+[
+  {
+    "trial_id": 0,
+    "config": {
+      "learning_rate": 0.0001,
+      "batch_size": 16,
+      "num_epochs": 5,
+      "warmup_ratio": 0.05,
+      "weight_decay": 0.0,
+      "max_grad_norm": 0.5,
+      "task_a_ratio": 0.4,
+      "task_b_ratio": 0.3,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Data processing error: CAS service error : ReqwestMiddleware Error: error sending request for url (https://transfer.xethub.hf.co/xorbs/default/d2d81603193a69cf79f72d05f1afc110aa0a6496022ddc282e10b9df301147c8?X-Xet-Signed-Range=bytes%3D39755863-52138340&X-Xet-Session-Id=01K8WGKC0J21W4SJTTAGJ6Y887&Expires=1761897133&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly90cmFuc2Zlci54ZXRodWIuaGYuY28veG9yYnMvZGVmYXVsdC9kMmQ4MTYwMzE5M2E2OWNmNzlmNzJkMDVmMWFmYzExMGFhMGE2NDk2MDIyZGRjMjgyZTEwYjlkZjMwMTE0N2M4P1gtWGV0LVNpZ25lZC1SYW5nZT1ieXRlcyUzRDM5NzU1ODYzLTUyMTM4MzQwJlgtWGV0LVNlc3Npb24tSWQ9MDFLOFdHS0MwSjIxVzRTSlRUQUdKNlk4ODciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE3NjE4OTcxMzN9fX1dfQ__&Signature=Fgzdj0R6oWzhCI-DlrTHWrf2GxD1dlaI-TdzOa2GjsrlWAEi0IFGCvc5bUXI5rtgQSoZ0aoD7ziEkAZimxroMnzjFa7k4cG4rdBLUBPOzXCUesHCiBm6UwIRqSXEVuSzzPFzD-72BcxTLS3Ygfn6Hu7tuarhfDm3KxYThSFtWN1aGLxw6GWzXYJ1N-2wfjjc7MaU38pEj-H~JqQRmQ6KEv4pbWuUO3~QmfTEOM1m1Z22-KXUDRb2qdsebu0oHIKipbUdwXhiiLdoriu1D9BI313pGYGzWJcY24v-PVBchgjqA9ZZsgKG9Pit4tmIr1d8ipaS-OYvkiuW1ksdYEO38g__&Key-Pair-Id=K2L8F4GPSG1IFC)"
+  },
+  {
+    "trial_id": 1,
+    "config": {
+      "learning_rate": 1e-05,
+      "batch_size": 4,
+      "num_epochs": 5,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.05,
+      "max_grad_norm": 0.5,
+      "task_a_ratio": 0.333,
+      "task_b_ratio": 0.333,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "CUDA out of memory. Tried to allocate 1024.00 MiB. GPU 0 has a total capacity of 23.52 GiB of which 716.62 MiB is free. Including non-PyTorch memory, this process has 22.81 GiB memory in use. Of the allocated memory 22.23 GiB is allocated by PyTorch, and 124.30 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+  },
+  {
+    "trial_id": 2,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.05,
+      "weight_decay": 0.0,
+      "max_grad_norm": 0.5,
+      "task_a_ratio": 0.4,
+      "task_b_ratio": 0.3,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 3,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 8,
+      "num_epochs": 5,
+      "warmup_ratio": 0.05,
+      "weight_decay": 0.0,
+      "max_grad_norm": 0.5,
+      "task_a_ratio": 0.4,
+      "task_b_ratio": 0.333,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 4,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 4,
+      "num_epochs": 3,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "max_grad_norm": 0.5,
+      "task_a_ratio": 0.4,
+      "task_b_ratio": 0.4,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 174, in collate_tensor_fn\n    return torch.stack(batch, 0, out=out)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: stack expects each tensor to be equal size, but got [512] at entry 0 and [1024] at entry 2\n"
+  },
+  {
+    "trial_id": 5,
+    "config": {
+      "learning_rate": 1e-05,
+      "batch_size": 4,
+      "num_epochs": 5,
+      "warmup_ratio": 0.15,
+      "weight_decay": 0.05,
+      "max_grad_norm": 0.5,
+      "task_a_ratio": 0.4,
+      "task_b_ratio": 0.4,
+      "task_c_ratio": 0.333
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 174, in collate_tensor_fn\n    return torch.stack(batch, 0, out=out)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: stack expects each tensor to be equal size, but got [512] at entry 0 and [1024] at entry 1\n"
+  },
+  {
+    "trial_id": 6,
+    "config": {
+      "learning_rate": 1e-05,
+      "batch_size": 16,
+      "num_epochs": 5,
+      "warmup_ratio": 0.15,
+      "weight_decay": 0.05,
+      "max_grad_norm": 2.0,
+      "task_a_ratio": 0.5,
+      "task_b_ratio": 0.4,
+      "task_c_ratio": 0.333
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 7,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 4,
+      "num_epochs": 5,
+      "warmup_ratio": 0.05,
+      "weight_decay": 0.01,
+      "max_grad_norm": 0.5,
+      "task_a_ratio": 0.333,
+      "task_b_ratio": 0.4,
+      "task_c_ratio": 0.333
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 8,
+    "config": {
+      "learning_rate": 0.0001,
+      "batch_size": 16,
+      "num_epochs": 3,
+      "warmup_ratio": 0.15,
+      "weight_decay": 0.0,
+      "max_grad_norm": 1.0,
+      "task_a_ratio": 0.4,
+      "task_b_ratio": 0.333,
+      "task_c_ratio": 0.333
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 9,
+    "config": {
+      "learning_rate": 0.0001,
+      "batch_size": 16,
+      "num_epochs": 3,
+      "warmup_ratio": 0.05,
+      "weight_decay": 0.0,
+      "max_grad_norm": 2.0,
+      "task_a_ratio": 0.333,
+      "task_b_ratio": 0.3,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 10,
+    "config": {
+      "learning_rate": 0.0001,
+      "batch_size": 16,
+      "num_epochs": 3,
+      "warmup_ratio": 0.15,
+      "weight_decay": 0.01,
+      "max_grad_norm": 2.0,
+      "task_a_ratio": 0.333,
+      "task_b_ratio": 0.4,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 11,
+    "config": {
+      "learning_rate": 1e-05,
+      "batch_size": 8,
+      "num_epochs": 5,
+      "warmup_ratio": 0.15,
+      "weight_decay": 0.05,
+      "max_grad_norm": 1.0,
+      "task_a_ratio": 0.4,
+      "task_b_ratio": 0.3,
+      "task_c_ratio": 0.333
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "CUDA out of memory. Tried to allocate 2.00 GiB. GPU 0 has a total capacity of 23.52 GiB of which 208.62 MiB is free. Including non-PyTorch memory, this process has 23.30 GiB memory in use. Of the allocated memory 22.57 GiB is allocated by PyTorch, and 288.58 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)"
+  },
+  {
+    "trial_id": 12,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 16,
+      "num_epochs": 3,
+      "warmup_ratio": 0.15,
+      "weight_decay": 0.0,
+      "max_grad_norm": 2.0,
+      "task_a_ratio": 0.333,
+      "task_b_ratio": 0.333,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 13,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 8,
+      "num_epochs": 5,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "max_grad_norm": 2.0,
+      "task_a_ratio": 0.5,
+      "task_b_ratio": 0.3,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 174, in collate_tensor_fn\n    return torch.stack(batch, 0, out=out)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: stack expects each tensor to be equal size, but got [512] at entry 0 and [1024] at entry 1\n"
+  },
+  {
+    "trial_id": 14,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 8,
+      "num_epochs": 5,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.0,
+      "max_grad_norm": 0.5,
+      "task_a_ratio": 0.4,
+      "task_b_ratio": 0.3,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 15,
+    "config": {
+      "learning_rate": 0.0001,
+      "batch_size": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.15,
+      "weight_decay": 0.01,
+      "max_grad_norm": 2.0,
+      "task_a_ratio": 0.5,
+      "task_b_ratio": 0.3,
+      "task_c_ratio": 0.333
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 174, in collate_tensor_fn\n    return torch.stack(batch, 0, out=out)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: stack expects each tensor to be equal size, but got [512] at entry 0 and [1024] at entry 6\n"
+  },
+  {
+    "trial_id": 16,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 16,
+      "num_epochs": 3,
+      "warmup_ratio": 0.15,
+      "weight_decay": 0.05,
+      "max_grad_norm": 1.0,
+      "task_a_ratio": 0.5,
+      "task_b_ratio": 0.3,
+      "task_c_ratio": 0.333
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 174, in collate_tensor_fn\n    return torch.stack(batch, 0, out=out)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: stack expects each tensor to be equal size, but got [512] at entry 0 and [1024] at entry 6\n"
+  },
+  {
+    "trial_id": 17,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 8,
+      "num_epochs": 3,
+      "warmup_ratio": 0.05,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "task_a_ratio": 0.4,
+      "task_b_ratio": 0.333,
+      "task_c_ratio": 0.2
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 18,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 8,
+      "num_epochs": 5,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.01,
+      "max_grad_norm": 1.0,
+      "task_a_ratio": 0.5,
+      "task_b_ratio": 0.333,
+      "task_c_ratio": 0.333
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 173, in collate_tensor_fn\n    out = elem.new(storage).resize_(len(batch), *list(elem.size()))\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Trying to resize storage that is not resizable\n"
+  },
+  {
+    "trial_id": 19,
+    "config": {
+      "learning_rate": 5e-05,
+      "batch_size": 8,
+      "num_epochs": 5,
+      "warmup_ratio": 0.1,
+      "weight_decay": 0.05,
+      "max_grad_norm": 2.0,
+      "task_a_ratio": 0.5,
+      "task_b_ratio": 0.3,
+      "task_c_ratio": 0.333
+    },
+    "val_loss": Infinity,
+    "status": "failed",
+    "error": "Caught RuntimeError in DataLoader worker process 0.\nOriginal Traceback (most recent call last):\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/worker.py\", line 308, in _worker_loop\n    data = fetcher.fetch(index)\n           ^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/fetch.py\", line 54, in fetch\n    return self.collate_fn(data)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 277, in default_collate\n    return collate(batch, collate_fn_map=default_collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in collate\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 129, in <dictcomp>\n    return elem_type({key: collate([d[key] for d in batch], collate_fn_map=collate_fn_map) for key in elem})\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 121, in collate\n    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/site-packages/torch/utils/data/_utils/collate.py\", line 174, in collate_tensor_fn\n    return torch.stack(batch, 0, out=out)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: stack expects each tensor to be equal size, but got [512] at entry 0 and [1024] at entry 6\n"
+  }
+]

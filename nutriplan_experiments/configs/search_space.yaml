@@ -1,0 +1,58 @@
+# Hyperparameter Search Space for NutriPlan (Stage I.5)
+# Defines the search space for hyperparameter optimization
+
+# Learning rate candidates
+learning_rate:
+  - 1.0e-5
+  - 5.0e-5
+  - 1.0e-4
+
+# Batch size candidates
+batch_size:
+  - 4
+  - 8
+  - 16
+
+# Number of epochs (use fewer for search)
+num_epochs:
+  - 3
+  - 5
+
+# Warmup ratio
+warmup_ratio:
+  - 0.05
+  - 0.1
+  - 0.15
+
+# Weight decay
+weight_decay:
+  - 0.0
+  - 0.01
+  - 0.05
+
+# Max gradient norm
+max_grad_norm:
+  - 0.5
+  - 1.0
+  - 2.0
+
+# Task mixing ratios
+# Option 1: Uniform
+task_a_ratio:
+  - 0.333  # Uniform
+  - 0.5    # Current default
+  - 0.4    # Moderate
+
+task_b_ratio:
+  - 0.333  # Uniform
+  - 0.3    # Current default
+  - 0.4    # Moderate
+
+task_c_ratio:
+  - 0.333  # Uniform
+  - 0.2    # Current default
+  - 0.2    # Moderate
+
+# Note: For grid search, this will create many combinations
+# Consider using random search with n_trials parameter
+# Or reduce the search space by fixing some parameters

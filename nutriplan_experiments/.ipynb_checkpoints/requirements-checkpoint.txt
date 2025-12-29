@@ -1,0 +1,312 @@
+# Core Dependencies
+torch>=2.0.0
+transformers>=4.30.0
+datasets>=2.12.0
+accelerate>=0.20.0
+
+# Training & Optimization
+peft>=0.4.0
+bitsandbytes>=0.39.0
+deepspeed>=0.9.0
+
+# Evaluation Metrics
+nltk>=3.8
+rouge-score>=0.1.2
+sacrebleu>=2.3.0
+
+# Data Processing
+pandas>=2.0.0
+numpy>=1.24.0
+jsonlines>=3.1.0
+
+# Experiment Tracking
+wandb>=0.15.0
+tensorboard>=2.13.0
+mlflow>=2.4.0
+
+# Utilities
+tqdm>=4.65.0
+pyyaml>=6.0
+scikit-learn>=1.3.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+plotly>=5.14.0
+
+# Knowledge Graph
+networkx>=3.1
+rdflib>=6.3.0
+
+# Web & API (optional)
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# Testing
+pytest>=7.3.0
+pytest-cov>=4.1.0
+
+# Code Quality
+black>=23.3.0
+flake8>=6.0.0
+isort>=5.12.0
+
+
+
+#终端命令
+#!/bin/bash
+
+# 环境检查
+[ -z "$CONDA_DEFAULT_ENV" ] && echo "❌ 请先激活conda环境!" && exit 1
+
+echo "开始安装 NutriPlan 环境..."
+
+# 批量安装所有包
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+pip install transformers==4.38.2 datasets==2.17.0 accelerate==0.27.2 nltk==3.8.1 rouge-score==0.1.2 sacrebleu==2.4.0
+pip install pandas==2.0.3 numpy==1.24.3 scipy==1.10.1 scikit-learn==1.3.2 tqdm==4.66.2 pyyaml==6.0.1 protobuf==3.20.3 networkx==3.1
+
+conda install -c conda-forge graph-tool -y
+python -c "import nltk; nltk.download(['punkt', 'stopwords'], quiet=True)"
+
+echo "✅ 所有包安装完成！"
+
+
+
+#超参数运行命令
+cd ~/work/recipebench/scripts/nutriplan_experiments
+python scripts/hyperparameter_search.py \
+      --model_name microsoft/phi-2 \
+      --search_space configs/search_space.yaml \
+      --data_dir ~/work/recipebench/data/10large_scale_datasets \
+      --output_dir results/hyperparam_search \
+      --search_type random
+
+
+#超参数运行JSONbug解决
+python << 'EOF'
+import re
+import numpy as np
+import json
+
+with open('scripts/hyperparameter_search.py', 'r') as f:
+    content = f.read()
+
+# 找到 _save_results 方法并完全替换
+pattern = r'(    def _save_results\(self\):.*?)(        with open\(results_path.*?json\.dump.*?\n.*?\n)'
+
+replacement = r'''\
+\1        # Convert numpy types to native Python types
+        results_clean = []
+        for result in self.results:
+            clean = {}
+            for k, v in result.items():
+                if isinstance(v, (np.integer, np.int64, np.int32)):
+                    clean[k] = int(v)
+                elif isinstance(v, (np.floating, np.float64, np.float32)):
+                    clean[k] = float(v)
+                elif isinstance(v, dict):
+                    clean[k] = {k2: int(v2) if isinstance(v2, (np.integer, np.int64)) else float(v2) if isinstance(v2, (np.floating, np.float64)) else v2 for k2, v2 in v.items()}
+                else:
+                    clean[k] = v
+            results_clean.append(clean)
+
+        with open(results_path, 'w') as f:
+            json.dump(results_clean, f, indent=2)
+'''
+
+# 使用正则替换内容
+content = re.sub(pattern, replacement, content, flags=re.DOTALL)
+
+# 将修改后的内容写回文件
+with open('scripts/hyperparameter_search.py', 'w') as f:
+    f.write(content)
+
+print("✅ JSON serialization fixed!")
+EOF
+
+
+#超参数修复batchsize
+python << 'EOF'
+with open('scripts/hyperparameter_search.py', 'r') as f:
+    lines = f.readlines()
+
+# 找到并修复 batch_size 和 num_epochs 行
+for i, line in enumerate(lines):
+    if "args.batch_size = config.get('batch_size'" in line:
+        lines[i] = "        args.batch_size = int(config.get('batch_size', 8))\n"
+    elif "args.num_epochs = config.get('num_epochs'" in line:
+        lines[i] = "        args.num_epochs = int(config.get('num_epochs', 3))\n"
+    elif "args.learning_rate = config.get('learning_rate'" in line:
+        lines[i] = "        args.learning_rate = float(config.get('learning_rate', 5e-5))\n"
+    elif "args.warmup_ratio = config.get('warmup_ratio'" in line:
+        lines[i] = "        args.warmup_ratio = float(config.get('warmup_ratio', 0.1))\n"
+    elif "args.weight_decay = config.get('weight_decay'" in line:
+        lines[i] = "        args.weight_decay = float(config.get('weight_decay', 0.01))\n"
+    elif "args.max_grad_norm = config.get('max_grad_norm'" in line:
+        lines[i] = "        args.max_grad_norm = float(config.get('max_grad_norm', 1.0))\n"
+    elif "args.task_a_ratio = config.get('task_a_ratio'" in line:
+        lines[i] = "        args.task_a_ratio = float(config.get('task_a_ratio', 0.5))\n"
+    elif "args.task_b_ratio = config.get('task_b_ratio'" in line:
+        lines[i] = "        args.task_b_ratio = float(config.get('task_b_ratio', 0.3))\n"
+    elif "args.task_c_ratio = config.get('task_c_ratio'" in line:
+        lines[i] = "        args.task_c_ratio = float(config.get('task_c_ratio', 0.2))\n"
+
+with open('scripts/hyperparameter_search.py', 'w') as f:
+    f.writelines(lines)
+
+print("✅ Type conversion fixed!")
+EOF
+
+
+#####
+# 创建 data collator 文件
+cat > data/collator.py << 'EOF'
+"""
+Data collator for NutriPlan multi-task learning
+Handles variable-length sequences with padding
+"""
+
+import torch
+from typing import Dict, List, Any
+
+
+class NutriPlanCollator:
+    """Custom collator for NutriPlan that handles padding"""
+
+    def __init__(self, tokenizer, padding=True, max_length=None):
+        """
+        Args:
+            tokenizer: HuggingFace tokenizer
+            padding: Whether to pad sequences
+            max_length: Maximum sequence length (None = pad to longest in batch)
+        """
+        self.tokenizer = tokenizer
+        self.padding = padding
+        self.max_length = max_length
+
+    def __call__(self, batch: List[Dict[str, Any]]) -> Dict[str, torch.Tensor]:
+        """
+        Collate batch with padding
+
+        Args:
+            batch: List of samples from dataset
+
+        Returns:
+            Padded batch as dict of tensors
+        """
+        # Separate input_ids, attention_mask, labels
+        input_ids = [item['input_ids'] for item in batch]
+        attention_mask = [item.get('attention_mask') for item in batch]
+        labels = [item.get('labels') for item in batch]
+
+        # Pad sequences
+        if self.padding:
+            # Find max length in batch
+            max_len = max(len(ids) for ids in input_ids)
+            if self.max_length:
+                max_len = min(max_len, self.max_length)
+
+            # Pad input_ids
+            padded_input_ids = []
+            padded_attention_mask = []
+            padded_labels = []
+
+            for i in range(len(batch)):
+                ids = input_ids[i]
+                mask = attention_mask[i] if attention_mask[i] is not None else torch.ones_like(ids)
+                labs = labels[i] if labels[i] is not None else ids.clone()
+
+                # Truncate if needed
+                if len(ids) > max_len:
+                    ids = ids[:max_len]
+                    mask = mask[:max_len]
+                    labs = labs[:max_len]
+
+                # Pad if needed
+                padding_length = max_len - len(ids)
+                if padding_length > 0:
+                    pad_id = self.tokenizer.pad_token_id if self.tokenizer.pad_token_id is not None else 0
+                    ids = torch.cat([ids, torch.full((padding_length,), pad_id, dtype=ids.dtype)])
+                    mask = torch.cat([mask, torch.zeros(padding_length, dtype=mask.dtype)])
+                    labs = torch.cat([labs, torch.full((padding_length,), -100, dtype=labs.dtype)])  # -100 ignored in loss
+
+                padded_input_ids.append(ids)
+                padded_attention_mask.append(mask)
+                padded_labels.append(labs)
+
+            # Stack into tensors
+            return {
+                'input_ids': torch.stack(padded_input_ids),
+                'attention_mask': torch.stack(padded_attention_mask),
+                'labels': torch.stack(padded_labels)
+            }
+        else:
+            # No padding (not recommended)
+            return {
+                'input_ids': torch.stack(input_ids),
+                'attention_mask': torch.stack(attention_mask) if attention_mask[0] is not None else None,
+                'labels': torch.stack(labels) if labels[0] is not None else None
+            }
+EOF
+
+echo "✅ Created data/collator.py"
+
+# 修改 run_nutriplan.py 使用 collator
+
+python << 'EOF'
+with open('training/run_nutriplan.py', 'r') as f:
+    lines = f.readlines()
+
+# 在 imports 部分添加 collator
+import_added = False
+for i, line in enumerate(lines):
+    if 'from data.dataset import' in line and not import_added:
+        lines.insert(i + 1, 'from data.collator import NutriPlanCollator\n')
+        import_added = True
+        break
+
+# 在 __init__ 方法中添加 collator 创建
+collator_added = False
+for i, line in enumerate(lines):
+    if 'self.tokenizer = AutoTokenizer.from_pretrained' in line and not collator_added:
+        # 找到这一行后面，添加 collator
+        j = i + 1
+        while j < len(lines) and 'self.tokenizer.pad_token' not in lines[j]:
+            j += 1
+        if j < len(lines):
+            lines.insert(j + 2, '\n        # Create data collator\n')
+            lines.insert(j + 3, '        self.collator = NutriPlanCollator(self.tokenizer, padding=True, max_length=2048)\n')
+            collator_added = True
+        break
+
+# 在 DataLoader 创建中添加 collate_fn
+for i, line in enumerate(lines):
+    if 'DataLoader(self.train_dataset' in line or 'DataLoader(train_dataset' in line:
+        # 找到这个 DataLoader 的结束括号
+        j = i
+        while j < len(lines) and ')' not in lines[j]:
+            j += 1
+        # 在最后一个参数后添加 collate_fn
+        if j < len(lines):
+            lines[j] = lines[j].replace(')', ',\n            collate_fn=self.collator\n        )')
+
+with open('training/run_nutriplan.py', 'w') as f:
+    f.writelines(lines)
+
+print("✅ Modified run_nutriplan.py to use collator")
+EOF
+
+
+##final
+  # 1. 验证数据
+  bash scripts/verify_data_files.sh
+
+  # 2. 测试 Dataset
+  python scripts/debug_dataset.py
+
+  # 3. 测试训练
+  bash scripts/test_training_plan_a.sh
+
+  # 4. 正式训练（如果测试通过）
+  bash scripts/train_all_llms_PLAN_A.sh

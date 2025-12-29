@@ -1,0 +1,73 @@
+# Baseline Models Configuration
+
+# SFT (Task B Only) Configuration
+sft:
+  model:
+    name: "meta-llama/Llama-3.2-3B"
+    max_length: 2048
+    fp16: true
+  training:
+    num_epochs: 5
+    batch_size: 8
+    learning_rate: 5.0e-5
+    weight_decay: 0.01
+    warmup_ratio: 0.1
+  checkpoint:
+    output_dir: "checkpoints/sft_task_b"
+  logging:
+    use_wandb: true
+    run_name: "sft_task_b"
+
+# RAG Configuration
+rag:
+  model:
+    name: "meta-llama/Llama-3.2-3B"
+    max_length: 2048
+  retrieval:
+    recipe_corpus: "data/recipe_corpus.jsonl"
+    top_k: 3
+    bm25_weight: 0.4
+    user_sim_weight: 0.6
+  generation:
+    temperature: 0.7
+    max_new_tokens: 1024
+    top_p: 0.9
+
+# Retrieval-Only Configuration
+retrieval:
+  recipe_corpus: "data/recipe_corpus.jsonl"
+  top_k: 10
+  bm25:
+    k1: 1.5
+    b: 0.75
+  scoring:
+    bm25_weight: 0.4
+    user_sim_weight: 0.6
+
+# SOTA Recipe Baseline Configuration
+# (Assuming RecipeGPT or similar)
+sota_recipe:
+  model:
+    name: "meta-llama/Llama-3.2-3B"
+    max_length: 2048
+  training:
+    num_epochs: 5
+    batch_size: 8
+    learning_rate: 5.0e-5
+  special_features:
+    use_structured_output: true
+    use_nutrition_loss: true
+    nutrition_loss_weight: 0.3
+
+# Zero-shot LLM Configuration
+zero_shot:
+  model:
+    name: "meta-llama/Llama-3.2-3B"
+    max_length: 2048
+  generation:
+    temperature: 0.7
+    max_new_tokens: 1024
+    top_p: 0.9
+  prompt_engineering:
+    use_few_shot: false
+    use_chain_of_thought: true
