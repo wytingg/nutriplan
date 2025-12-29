@@ -481,4 +481,3 @@ Based on authoritative nutritional research, the synergy score (0-1 range) of in
 |Complementarity Pair (Ingredient/Nutrient)|Synergy Score|Scientific Principle|
 |---|---|---|
 |High-iron ingredients + High-vitamin C ingredients|1.0|Vitamin C can convert ferric iron|
-> （注：文档部分内容可能由 AI 生成）
